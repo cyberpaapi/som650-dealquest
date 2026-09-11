@@ -1,4 +1,4 @@
-export const VERSION = 'som650-500-v1';
+export const VERSION = 'som650-250-v2';
 export const STORAGE_KEY = 'dealquest.progress.v1';
 export const emptyState = () => ({version:1, stats:{}, daily:{}, session:null, custom:[], lastResult:null});
 export const shuffle = array => { const a=[...array]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
@@ -36,6 +36,15 @@ export function loadState(storage) {
 }
 export function validSession(s,bank){
   return !!(s&&Array.isArray(s.items)&&s.items.length&&s.items.length<=2000&&Number.isInteger(s.index)&&s.index>=0&&s.index<s.items.length&&s.items.every(x=>x&&bank.some(q=>q.id===x.id)&&Array.isArray(x.order)&&x.order.length===4&&new Set(x.order).size===4&&x.order.every(n=>Number.isInteger(n)&&n>=0&&n<4)&&(x.selected===null||Number.isInteger(x.selected)&&x.selected>=0&&x.selected<4)));
+}
+export function reconcileSession(session,bank){
+  if(!session||!Array.isArray(session.items)||!Number.isInteger(session.index)||session.index<0||session.index>=session.items.length)return null;
+  const ids=new Set(bank.map(q=>q.id));
+  const retained=session.items.map((item,index)=>({item,index})).filter(x=>x.item&&ids.has(x.item.id));
+  if(!retained.length)return null;
+  const next=retained.findIndex(x=>x.index>=session.index);
+  const result={...session,items:retained.map(x=>({...x.item})),index:next<0?retained.length-1:next};
+  return validSession(result,bank)?result:null;
 }
 export function makeSession(questions,label){
   if(!questions.length)throw Error('No questions match these filters. Try another topic or mode.');

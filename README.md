@@ -1,6 +1,6 @@
 # DealQuest · SOM 650
 
-A phone-friendly, static quiz with **500 questions** adapted from the two supplied SOM 650 slide decks. Every question has four choices, a hint, theory, an explanation, and exact PDF page references.
+A phone-friendly, static quiz with **250 questions** adapted from the two supplied SOM 650 slide decks. Every question has four choices, a hint, theory, an explanation, and exact PDF page references.
 
 ## Study modes
 
@@ -12,6 +12,8 @@ A phone-friendly, static quiz with **500 questions** adapted from the two suppli
 
 Question order and answer positions shuffle. Browser local storage preserves progress and the active round. No account or backend is needed. Daily goals, streaks within rounds and capped XP add a little momentum without a timer.
 
+The shorter bank retains original question IDs. Saved results and bookmarks for retained questions continue to work; paused rounds skip questions removed from the core bank. Older answer-history records remain stored, and an older missed-question export can still be imported as an additional revision pack.
+
 ## Download misses and get a redesigned quiz
 
 1. Open **Comeback → Download missed questions** (also available after a round).
@@ -19,7 +21,7 @@ Question order and answer positions shuffle. Browser local storage preserves pro
 3. Ask for a tailored **DealQuest revision question pack** based on your errors.
 4. Import the returned JSON in **Comeback → Choose JSON file**.
 
-Exports contain full questions, source references, correct and selected answers, total attempts and the most recent 100 attempts per question, including use of hints and theory. Imports add the questions to Comeback without overwriting local answer totals. Changed questions require new unique IDs. New revision questions are added alongside the 500 core questions.
+Exports contain full questions, source references, correct and selected answers, total attempts and the most recent 100 attempts per question, including use of hints and theory. Imports add the questions to Comeback without overwriting local answer totals. Changed questions require new unique IDs. New revision questions are added alongside the 250 core questions.
 
 Revision pack format:
 

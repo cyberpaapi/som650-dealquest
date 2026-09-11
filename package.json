@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "500 source-referenced SOM 650 questions, with theory, explanations and a comeback queue.",
+  "description": "250 source-referenced SOM 650 questions, with theory, explanations and a comeback queue.",
   "scripts": {"test": "node --test tests/core.test.mjs"},
   "engines": {"node": ">=20"}
 }
