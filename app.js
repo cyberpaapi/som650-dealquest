@@ -75,7 +75,7 @@ document.addEventListener('click',e=>{
  if(a==='import'){$('#import-file').value='';$('#import-file').click();return;}
  if(a==='prev-page'||a==='next-page'){library.page+=a==='next-page'?1:-1;render();window.scrollTo(0,0);return;}
  const s=state.session;if(!s||route!=='quiz')return;const item=s.items[s.index],q=byId.get(item.id);
- if(a==='answer'&&!item.submitted){item.selected=Number(b.dataset.answer);if(recordAnswer(state,q,item)){save();render();const feedback=document.querySelector('.feedback');feedback?.focus({preventScroll:true});feedback?.scrollIntoView({block:'nearest'});}return;}
+ if(a==='answer'&&!item.submitted){const scrollX=window.scrollX,scrollY=window.scrollY;item.selected=Number(b.dataset.answer);if(recordAnswer(state,q,item)){save();render();document.querySelector('.feedback')?.focus({preventScroll:true});window.scrollTo({left:scrollX,top:scrollY,behavior:'instant'});}return;}
  if(a==='hint'||a==='theory'){item[`${a}Open`]=!item[`${a}Open`];if(item[`${a}Open`]&&!item.submitted)item[a]=true;save();render();document.querySelector(`[data-action="${a}"]`)?.focus({preventScroll:true});return;}
  if(a==='next'&&item.submitted){if(s.index===s.items.length-1){state.lastResult={label:s.label,items:s.items,finishedAt:new Date().toISOString()};state.session=null;save();go('results');}else{s.index++;save();render();window.scrollTo(0,0);$('#question-heading').setAttribute('tabindex','-1');$('#question-heading').focus({preventScroll:true});}}
 });
